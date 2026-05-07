@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    container_name: sport_db
+    environment:
+      POSTGRES_USER: athlete
+      POSTGRES_PASSWORD: superpassword
+      POSTGRES_DB: tracker_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432" 
+
+  web:
+    build: .
+    container_name: sport_flask
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - .:/app  
+
+volumes:
+  postgres_data:

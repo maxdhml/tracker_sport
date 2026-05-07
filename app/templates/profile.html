@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h1>Profil Athlète : {{ profile.nom }}</h1>
+    <hr>
+    <h3>Objectif principal : {{ profile.objectif }}</h3>
+    <p><strong>Niveau :</strong> {{ profile.niveau }}</p>
+    <p><strong>Poids actuel :</strong> {{ profile.poids_actuel }}</p>
+</div>
+{% endblock %}

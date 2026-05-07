@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sport Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <nav>
+        <a href="{{ url_for('profile') }}">Mon Profil</a>
+        {% if session.get('user_id') %}
+        <a href="{{ url_for('recap') }}">Tableau de bord</a>
+        <a href="{{ url_for('form') }}">Ajouter un Exercice</a>
+        <a href="{{ url_for('logout') }}" style="float: right; color: #ff6b6b;">Déconnexion</a>
+        {% else %}
+        <a href="{{ url_for('login') }}" style="float: right;">Connexion Admin</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+</html>

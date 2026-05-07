@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Mon Suivi d'Entraînement</h1>
+{% if programmes %}
+{% for programme in programmes %}
+<div class="card">
+    <h2>{{ programme.nom }} <small>({{ programme.code }})</small></h2>
+    {% for groupe in programme.groupes %}
+    <div class="groupe-bloc">
+        <h3>{{ groupe.nom }}</h3>
+        <ul>
+            {% for exercice in groupe.exercices %}
+            <li>
+                <strong>{{ exercice.nom }}</strong>
+                <span class="badge niveau-{{ exercice.niveau_maitrise }}">
+                    Niveau {{ exercice.niveau_maitrise }}/5
+                </span>
+            </li>
+            {% else %}
+            <li class="empty">Aucun exercice pour ce groupe.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
+{% else %}
+<p>Aucun programme n'a été créé.</p>
+{% endif %}
+{% endblock %}

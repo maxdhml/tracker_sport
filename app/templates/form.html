@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Ajouter un nouvel exercice</h2>
+    <form method="POST" action="{{ url_for('form') }}">
+        <p><label>Nom de l'exercice :</label><br>
+            <input type="text" name="nom" required>
+        </p>
+
+        <p><label>Code court :</label><br>
+            <input type="text" name="code" required>
+        </p>
+
+        <p><label>Groupe musculaire associé :</label><br>
+            <select name="groupe_id" required>
+                <option value="">-- Choisir un groupe --</option>
+                {% for groupe in groupes %}
+                <option value="{{ groupe.id }}">{{ groupe.programme.nom }} > {{ groupe.nom }}</option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <p><label>Niveau de maîtrise actuel :</label><br>
+            <select name="niveau_maitrise" required>
+                <option value="1">1 - Mouvement inconnu</option>
+                <option value="2">2 - Apprentissage de la posture</option>
+                <option value="3">3 - Bonne exécution</option>
+                <option value="4">4 - Mouvement maîtrisé</option>
+                <option value="5">5 - Expert (Surcharge progressive)</option>
+            </select>
+        </p>
+
+        <button type="submit">Enregistrer l'exercice</button>
+    </form>
+</div>
+{% endblock %}
