@@ -6,8 +6,8 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 PROFILE = {
-    "nom": "Ton Prénom",
+    "nom": "Maxime",
     "objectif": "Sèche et définition musculaire",
     "niveau": "Intermédiaire",
-    "poids_actuel": "75 kg"
+    "poids_actuel": "78 kg"
 }
