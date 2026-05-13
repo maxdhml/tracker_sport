@@ -3,8 +3,9 @@
 <div class="card" style="max-width: 400px; margin: auto;">
     <h2>Accès Espace Protégé</h2>
     <form method="POST">
-        <input type="text" name="username" placeholder="Identifiant (ex: admin)" required>
-        <input type="password" name="password" placeholder="Mot de passe (ex: admin123)" required>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="text" name="username" placeholder="Identifiant" required>
+        <input type="password" name="password" placeholder="Mot de passe" required>
         <button type="submit">Se connecter</button>
     </form>
 </div>

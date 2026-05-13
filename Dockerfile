@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 
 # On force directement pip à utiliser le proxy pour cette ligne précise !
-RUN pip install --proxy=http://cache-etu.univ-artois.fr:3128 -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . .
 

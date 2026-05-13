@@ -13,12 +13,21 @@
         {% if session.get('user_id') %}
         <a href="{{ url_for('recap') }}">Tableau de bord</a>
         <a href="{{ url_for('form') }}">Ajouter un Exercice</a>
-        <a href="{{ url_for('logout') }}" style="float: right; color: #ff6b6b;">Déconnexion</a>
+        <a href="{{ url_for('logout') }}" class="nav-logout">Déconnexion</a>
         {% else %}
-        <a href="{{ url_for('login') }}" style="float: right;">Connexion Admin</a>
+        <a href="{{ url_for('login') }}" class="nav-login">Connexion Admin</a>
         {% endif %}
     </nav>
+
     <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
         {% block content %}{% endblock %}
     </div>
 </body>

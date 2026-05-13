@@ -18,7 +18,7 @@ with app.app_context():
         
     # 2. Création d'un programme par défaut pour que tu puisses tester le formulaire
     if not Programme.query.first():
-        p1 = Programme(nom="Sèche Été 2024", code="SEC-24")
+        p1 = Programme(nom="Sèche Été 2026", code="SEC-26")
         db.session.add(p1)
         db.session.flush() # Permet de récupérer p1.id tout de suite
         

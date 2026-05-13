@@ -13,8 +13,12 @@
             <li>
                 <strong>{{ exercice.nom }}</strong>
                 <span class="badge niveau-{{ exercice.niveau_maitrise }}">
-                    Niveau {{ exercice.niveau_maitrise }}/5
+                    {{ niveaux[exercice.niveau_maitrise] }}
                 </span>
+                <form method="POST" action="{{ url_for('supprimer', exercice_id=exercice.id) }}" class="inline-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn-supprimer" onclick="return confirm('Supprimer cet exercice ?')">✕</button>
+                </form>
             </li>
             {% else %}
             <li class="empty">Aucun exercice pour ce groupe.</li>
