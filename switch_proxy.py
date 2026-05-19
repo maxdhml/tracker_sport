@@ -14,10 +14,10 @@ with open(DOCKERFILE, "r") as f:
 
 if LIGNE_AVEC_PROXY in contenu:
     contenu = contenu.replace(LIGNE_AVEC_PROXY, LIGNE_SANS_PROXY)
-    print("✅ Proxy DÉSACTIVÉ (mode maison)")
+    print("Proxy DÉSACTIVÉ (mode maison)")
 else:
     contenu = contenu.replace(LIGNE_SANS_PROXY, LIGNE_AVEC_PROXY)
-    print("✅ Proxy ACTIVÉ (mode IUT)")
+    print("Proxy ACTIVÉ (mode IUT)")
 
 with open(DOCKERFILE, "w") as f:
     f.write(contenu)
