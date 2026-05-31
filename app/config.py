@@ -1,11 +1,11 @@
 import os
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = os.environ.get('SECRET_KEY') #sécurisé la session avec la clé
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') #URL de connexion vers bdd
+    SQLALCHEMY_TRACK_MODIFICATIONS = False #désactive suivi (économie)
 
-# Informations du profil (fichier de configuration facile à manipuler)
+# Informations de la page d'accueil
 PROFILE = {
     "nom": "Maxime",
     "objectif": "Sèche et définition musculaire",
@@ -13,7 +13,7 @@ PROFILE = {
     "poids_actuel": "78 kg"
 }
 
-# Niveaux d'acquisition (conformes au cahier des charges)
+# Bareme (modifiable)
 NIVEAUX = {
     1: "Non acquis",
     2: "En cours d'acquisition",

@@ -1,34 +1,48 @@
+#gestion des conteneurs (projet portable)
 
 services:
+
   db:
+    #base de données postgresql
     image: postgres:15
     container_name: sport_db
     environment:
+      #intisialiser la db avec mot de passe et nom
       POSTGRES_USER: athlete
       POSTGRES_PASSWORD: superpassword
       POSTGRES_DB: tracker_db
     volumes:
+      #sauvergarde quand arret conteneur
       - postgres_data:/var/lib/postgresql/data
+      #importer la bdd au demarrage si fichier existe
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
     ports:
-      - "5433:5432" 
+      # PC : Conteneur
+      - "5433:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U athlete -d tracker_db"]
+      # verifie si db peut recevoir des connexions
+      test: [ "CMD-SHELL", "pg_isready -U athlete -d tracker_db" ]
       interval: 5s
       timeout: 5s
       retries: 5
 
   web:
+    #serveur web flask
     build: .
     container_name: sport_flask
     ports:
       - "5000:5000"
     env_file:
+      #variables pour accéder à la db
       - .env
     depends_on:
+      # condition
       db:
-        condition: service_healthy
+        condition: service_healthy # db prete 
     volumes:
-      - .:/app  
+      #synchroniser le dossier app et le conteneur
+      - .:/app
 
 volumes:
+  #déclaration des volumes des services
   postgres_data:
